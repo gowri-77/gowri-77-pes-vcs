@@ -223,6 +223,10 @@ int object_read(const ObjectID *id, ObjectType *type_out, void **data_out, size_
         return -1;
     }
     fclose(f);
+    
+
+
+
 
     ObjectID check;
     compute_hash(buffer, size, &check);
@@ -268,3 +272,36 @@ int object_read(const ObjectID *id, ObjectType *type_out, void **data_out, size_
     free(buffer);
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
