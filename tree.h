@@ -9,6 +9,8 @@
 
 #include "pes.h"
 
+uint32_t get_file_mode(const char *path);
+
 #define MAX_TREE_ENTRIES 1024
 
 typedef struct {

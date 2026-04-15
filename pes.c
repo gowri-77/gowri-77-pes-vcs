@@ -15,23 +15,25 @@
 
 // Usage: pes init
 void cmd_init(void) {
-    if (mkdir(PES_DIR, 0755) != 0 && access(PES_DIR, F_OK) != 0) {
-        fprintf(stderr, "error: failed to create %s\n", PES_DIR);
-        return;
-    }
-    mkdir(OBJECTS_DIR, 0755);
+    mkdir(".pes", 0755);
+    mkdir(".pes/objects", 0755);
     mkdir(".pes/refs", 0755);
-    mkdir(REFS_DIR, 0755);
+    mkdir(".pes/refs/heads", 0755);
 
-    if (access(HEAD_FILE, F_OK) != 0) {
-        FILE *f = fopen(HEAD_FILE, "w");
-        if (f) {
-            fprintf(f, "ref: refs/heads/main\n");
-            fclose(f);
-        }
-    }
+    // HEAD file
+    FILE *f = fopen(".pes/HEAD", "w");
+    fprintf(f, "ref: refs/heads/main\n");
+    fclose(f);
 
-    printf("Initialized empty PES repository in %s/\n", PES_DIR);
+    // main branch file (empty initially)
+    f = fopen(".pes/refs/heads/main", "w");
+    fclose(f);
+
+    // index file
+    f = fopen(".pes/index", "w");
+    fclose(f);
+
+    printf("Initialized empty PES repository\n");
 }
 
 // Usage: pes add <file>...
@@ -52,6 +54,8 @@ void cmd_add(int argc, char *argv[]) {
             fprintf(stderr, "error: failed to add '%s'\n", argv[i]);
         }
     }
+
+    index_save(&index);  
 }
 
 // Usage: pes status

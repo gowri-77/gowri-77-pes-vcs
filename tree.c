@@ -7,9 +7,11 @@
 //   "<mode-as-ascii-octal> <name>\0<32-byte-binary-hash>"
 //
 // Example single entry (conceptual):
-//   "100644 hello.txt\0" followed by 32 raw bytes of SHA-256
+//   "100644 hello.txt\0" followed by 32 raw bytes of SHA-25
 
 #include "tree.h"
+#include "index.h"
+#include "pes.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -36,6 +38,9 @@ uint32_t get_file_mode(const char *path) {
 
 // Parse binary tree data into a Tree struct safely.
 // Returns 0 on success, -1 on parse error.
+
+int object_write(ObjectType type, const void *data, size_t len, ObjectID *id_out);
+
 int tree_parse(const void *data, size_t len, Tree *tree_out) {
     tree_out->count = 0;
     const uint8_t *ptr = (const uint8_t *)data;
@@ -129,9 +134,35 @@ int tree_serialize(const Tree *tree, void **data_out, size_t *len_out) {
 //   - object_write    : save that binary buffer to the store as OBJ_TREE
 //
 // Returns 0 on success, -1 on error.
+
+
 int tree_from_index(ObjectID *id_out) {
-    // TODO: Implement recursive tree building
-    // (See Lab Appendix for logical steps)
-    (void)id_out;
-    return -1;
+    Index index;
+
+    if (index_load(&index) != 0) return -1;
+
+    Tree tree;
+    tree.count = 0;
+
+    for (int i = 0; i < index.count; i++) {
+        TreeEntry *te = &tree.entries[tree.count++];
+
+        te->mode = index.entries[i].mode;
+        te->hash = index.entries[i].hash;
+
+        strcpy(te->name, index.entries[i].path);
+    }
+
+    void *data;
+    size_t len;
+
+    if (tree_serialize(&tree, &data, &len) != 0) return -1;
+
+    if (object_write(OBJ_TREE, data, len, id_out) != 0) {
+        free(data);
+        return -1;
+    }
+
+    free(data);
+    return 0;
 }

@@ -36,6 +36,8 @@ typedef struct {
 
 // ─── Utility Functions (implement in object.c) ─────────────────────────────
 
+int object_write(ObjectType type, const void *data, size_t len, ObjectID *id_out);
+
 // Convert a binary hash to a 64-character hex string (+ null terminator).
 // hex_out must be at least HASH_HEX_SIZE + 1 bytes.
 void hash_to_hex(const ObjectID *id, char *hex_out);
