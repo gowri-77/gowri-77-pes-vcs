@@ -1,4 +1,4 @@
-<img width="852" height="106" alt="unnamed" src="https://github.com/user-attachments/assets/ea9390b6-58b9-4af4-8b7a-1e019c843497" />
+
 # PES Version Control System
 
 ## Overview
