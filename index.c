@@ -184,6 +184,7 @@ int index_load(Index *index) {
 //
 // Returns 0 on success, -1 on error.
 
+
 int index_save(const Index *index) {
     FILE *f = fopen(".pes/index.tmp", "w");
     if (!f) return -1;
@@ -198,6 +199,7 @@ int index_save(const Index *index) {
                 index->entries[i].size,
                 index->entries[i].path);
     }
+
 
     fclose(f);
     rename(".pes/index.tmp", ".pes/index");
@@ -260,3 +262,21 @@ int index_add(Index *index, const char *path) {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
