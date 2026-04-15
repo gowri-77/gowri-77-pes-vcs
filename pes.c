@@ -2,6 +2,7 @@
 //
 // This file is PROVIDED. Do not modify.
 
+
 #include "pes.h"
 #include "index.h"
 #include "commit.h"
@@ -10,6 +11,7 @@
 #include <string.h>
 #include <sys/stat.h>
 #include <unistd.h>
+
 
 // ─── PROVIDED: Command Implementations ──────────────────────────────────────
 
@@ -134,3 +136,14 @@ int main(int argc, char *argv[]) {
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
