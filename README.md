@@ -24,6 +24,7 @@ This project implements a simplified version control system similar to Git. It s
 ### Phase 1
 
 #### 1A: test_objects output
+<img width="857" height="243" alt="image (2)" src="https://github.com/user-attachments/assets/0de3f2c3-2410-4d25-a84b-fd85baf0808e" />
 
 #### 1B: Object storage structure
 (Add screenshot here)
