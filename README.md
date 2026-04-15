@@ -6,20 +6,6 @@ This project implements a simplified version control system similar to Git. It s
 
 ---
 
-## Features
-- Blob, Tree, and Commit object storage
-- Tree structure to represent directories
-- Index (staging area) for tracking files
-- Commit creation and history tracking
-- Basic commands:
-  - `pes init`
-  - `pes add`
-  - `pes status`
-  - `pes commit`
-  - `pes log`
-
----
-
 ## Screenshots
 
 ### Phase 1
