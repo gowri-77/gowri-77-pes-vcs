@@ -119,7 +119,10 @@ int tree_serialize(const Tree *tree, void **data_out, size_t *len_out) {
     return 0;
 }
 
+
 // ─── TODO: Implement these ──────────────────────────────────────────────────
+  
+
 
 // Build a tree hierarchy from the current index and write all tree
 // objects to the object store.
@@ -166,3 +169,18 @@ int tree_from_index(ObjectID *id_out) {
     free(data);
     return 0;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
